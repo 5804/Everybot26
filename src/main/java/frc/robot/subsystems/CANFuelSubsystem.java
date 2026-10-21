@@ -33,16 +33,16 @@ import static frc.robot.Constants.FuelConstants.*;
 import java.io.ObjectInputFilter.Config;
 
 public class CANFuelSubsystem extends SubsystemBase {
-  private final TalonFX LeftIntakeLauncher;
-  private final TalonFX RightIntakeLauncher;
+  public TalonFX LeftIntakeLauncher;
+  public TalonFX RightIntakeLauncher;
   //private final TalonFX Indexer;
-  private final WPI_TalonSRX Indexer;
+  public WPI_TalonSRX Indexer;
 
   public CANFuelSubsystem() {
-    TalonFX leftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
-    TalonFX rightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
+    TalonFX LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
+    TalonFX RightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
     //TalonFX indexer = new TalonFX(INDEXER_MOTOR_ID);
-    WPI_TalonSRX Indexer = new WPI_TalonSRX(INDEXER_MOTOR_ID)
+    WPI_TalonSRX Indexer = new WPI_TalonSRX(INDEXER_MOTOR_ID);
     
     TalonFXConfiguration configs;
     TalonFXConfiguration supplyCurrentLimitConfiguration = new TalonFXConfiguration();
@@ -58,7 +58,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     feederConfig.withCurrentLimits(motorCurrentLimitConfig);
     launcherConfig.withCurrentLimits(motorCurrentLimitConfig);
   
-    launcherConfig.
+    //launcherConfig.
 
     // put default values for various fuel operations onto the dashboard
     // all commands using this subsystem pull values from the dashbaord to allow
