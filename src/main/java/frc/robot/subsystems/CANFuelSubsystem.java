@@ -13,6 +13,7 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
@@ -34,16 +35,18 @@ import java.io.ObjectInputFilter.Config;
 public class CANFuelSubsystem extends SubsystemBase {
   private final TalonFX LeftIntakeLauncher;
   private final TalonFX RightIntakeLauncher;
-  private final TalonFX Indexer;
+  //private final TalonFX Indexer;
+  private final WPI_TalonSRX Indexer;
 
   public CANFuelSubsystem() {
     TalonFX leftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
     TalonFX rightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
-    TalonFX indexer = new TalonFX(INDEXER_MOTOR_ID);
+    //TalonFX indexer = new TalonFX(INDEXER_MOTOR_ID);
+    WPI_TalonSRX Indexer = new WPI_TalonSRX(INDEXER_MOTOR_ID)
     
     TalonFXConfiguration configs;
     TalonFXConfiguration supplyCurrentLimitConfiguration = new TalonFXConfiguration();
-    TalonFXConfiguration indexerConfig = new TalonFXConfiguration();
+    //TalonFXConfiguration indexerConfig = new TalonFXConfiguration();
     TalonFXConfiguration feederConfig = new TalonFXConfiguration();
     TalonFXConfiguration launcherConfig = new TalonFXConfiguration();
     CurrentLimitsConfigs motorCurrentLimitConfig = new CurrentLimitsConfigs();
@@ -51,7 +54,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     motorCurrentLimitConfig.SupplyCurrentLimit = INDEXER_MOTOR_CURRENT_LIMIT;
     motorCurrentLimitConfig.SupplyCurrentLimitEnable = true;
 
-    indexerConfig.withCurrentLimits(motorCurrentLimitConfig);
+    //indexerConfig.withCurrentLimits(motorCurrentLimitConfig);
     feederConfig.withCurrentLimits(motorCurrentLimitConfig);
     launcherConfig.withCurrentLimits(motorCurrentLimitConfig);
   

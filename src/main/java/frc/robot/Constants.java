@@ -22,10 +22,10 @@ public final class Constants {
 
   public static final class DriveConstants {
     // Motor controller IDs for drivetrain motors
-    public static final int LEFT_LEADER_ID = 1;
-    public static final int LEFT_FOLLOWER_ID = 3;
-    public static final int RIGHT_LEADER_ID = 2;
-    public static final int RIGHT_FOLLOWER_ID = 4;
+    public static final int LEFT_LEADER_ID = 10;
+    public static final int LEFT_FOLLOWER_ID = 11;
+    public static final int RIGHT_LEADER_ID = 20;
+    public static final int RIGHT_FOLLOWER_ID = 21;
 
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
@@ -34,9 +34,9 @@ public final class Constants {
 
   public static final class FuelConstants {
     // Motor controller IDs for Fuel Mechanism motors
-    public static final int LEFT_INTAKE_LAUNCHER_MOTOR_ID = 5;
-    public static final int RIGHT_INTAKE_LAUNCHER_MOTOR_ID = 6;
-    public static final int INDEXER_MOTOR_ID = 8;
+    public static final int LEFT_INTAKE_LAUNCHER_MOTOR_ID = 30;
+    public static final int RIGHT_INTAKE_LAUNCHER_MOTOR_ID = 31;
+    public static final int INDEXER_MOTOR_ID = 32;
 
     // Current limit for fuel mechanism motors.
     public static final int INDEXER_MOTOR_CURRENT_LIMIT = 80;
@@ -56,7 +56,7 @@ public final class Constants {
 
   public static final class ClimbConstatns {
     // Motor controller IDs for Climb motor
-    public static final int CLIMBER_MOTOR_ID = 7;
+    public static final int CLIMBER_MOTOR_ID = 33;
 
     // Current limit for climb motor
     public static final int CLIMBER_MOTOR_CURRENT_LIMIT = 40;
