@@ -12,43 +12,50 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
-
+import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.sim.TalonFXSimState;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 import static frc.robot.Constants.FuelConstants.*;
 
+import java.io.ObjectInputFilter.Config;
+
 public class CANFuelSubsystem extends SubsystemBase {
-  private final SparkMax LeftIntakeLauncher;
-  private final SparkMax RightIntakeLauncher;
-  private final SparkMax Indexer;
+  private final TalonFX LeftIntakeLauncher;
+  private final TalonFX RightIntakeLauncher;
+  private final TalonFX Indexer;
 
-  /** Creates a new CANBallSubsystem. */
   public CANFuelSubsystem() {
-    // create brushed motors for each of the motors on the launcher mechanism
-    LeftIntakeLauncher = new SparkMax(LEFT_INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
-    RightIntakeLauncher = new SparkMax(RIGHT_INTAKE_LAUNCHER_MOTOR_ID, MotorType.kBrushless);
-    Indexer = new SparkMax(INDEXER_MOTOR_ID, MotorType.kBrushed);
+    TalonFX leftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
+    TalonFX rightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
+    TalonFX indexer = new TalonFX(INDEXER_MOTOR_ID);
+    
+    TalonFXConfiguration configs;
+    TalonFXConfiguration supplyCurrentLimitConfiguration = new TalonFXConfiguration();
+    TalonFXConfiguration indexerConfig = new TalonFXConfiguration();
+    TalonFXConfiguration feederConfig = new TalonFXConfiguration();
+    TalonFXConfiguration launcherConfig = new TalonFXConfiguration();
+    CurrentLimitsConfigs motorCurrentLimitConfig = new CurrentLimitsConfigs();
+    
+    motorCurrentLimitConfig.SupplyCurrentLimit = INDEXER_MOTOR_CURRENT_LIMIT;
+    motorCurrentLimitConfig.SupplyCurrentLimitEnable = true;
 
-    // create the configuration for the feeder roller, set a current limit and apply
-    // the config to the controller
-    SparkMaxConfig feederConfig = new SparkMaxConfig();
-    feederConfig.smartCurrentLimit(INDEXER_MOTOR_CURRENT_LIMIT);
-    Indexer.configure(feederConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-    // create the configuration for the launcher roller, set a current limit, set
-    // the motor to inverted so that positive values are used for both intaking and
-    // launching, and apply the config to the controller
-    SparkMaxConfig launcherConfig = new SparkMaxConfig();
-
-    launcherConfig.smartCurrentLimit(LAUNCHER_MOTOR_CURRENT_LIMIT);
-    launcherConfig.voltageCompensation(12);
-    launcherConfig.idleMode(IdleMode.kCoast);
-    RightIntakeLauncher.configure(launcherConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    launcherConfig.inverted(true);
-    LeftIntakeLauncher.configure(launcherConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    indexerConfig.withCurrentLimits(motorCurrentLimitConfig);
+    feederConfig.withCurrentLimits(motorCurrentLimitConfig);
+    launcherConfig.withCurrentLimits(motorCurrentLimitConfig);
+  
+    launcherConfig.
 
     // put default values for various fuel operations onto the dashboard
     // all commands using this subsystem pull values from the dashbaord to allow
