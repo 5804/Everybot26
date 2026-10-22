@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix6.CANBus;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
@@ -33,16 +34,16 @@ import static frc.robot.Constants.FuelConstants.*;
 import java.io.ObjectInputFilter.Config;
 
 public class CANFuelSubsystem extends SubsystemBase {
-  public TalonFX LeftIntakeLauncher;
-  public TalonFX RightIntakeLauncher;
+  private final TalonFX LeftIntakeLauncher;
+  private final TalonFX RightIntakeLauncher;
   //private final TalonFX Indexer;
-  public WPI_TalonSRX Indexer;
+  private final WPI_TalonSRX Indexer;
 
   public CANFuelSubsystem() {
-    TalonFX LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
-    TalonFX RightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
+    LeftIntakeLauncher = new TalonFX(LEFT_INTAKE_LAUNCHER_MOTOR_ID);
+    RightIntakeLauncher = new TalonFX(RIGHT_INTAKE_LAUNCHER_MOTOR_ID);
     //TalonFX indexer = new TalonFX(INDEXER_MOTOR_ID);
-    WPI_TalonSRX Indexer = new WPI_TalonSRX(INDEXER_MOTOR_ID);
+    Indexer = new WPI_TalonSRX(INDEXER_MOTOR_ID);
     
     TalonFXConfiguration configs;
     TalonFXConfiguration supplyCurrentLimitConfiguration = new TalonFXConfiguration();
@@ -57,7 +58,7 @@ public class CANFuelSubsystem extends SubsystemBase {
     //indexerConfig.withCurrentLimits(motorCurrentLimitConfig);
     feederConfig.withCurrentLimits(motorCurrentLimitConfig);
     launcherConfig.withCurrentLimits(motorCurrentLimitConfig);
-  
+    //launcherConfig.inverted(true);
     //launcherConfig.
 
     // put default values for various fuel operations onto the dashboard
