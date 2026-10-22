@@ -24,7 +24,7 @@ public class Eject extends Command {
   // appropriate values for ejecting
   @Override
   public void initialize() {
-    fuelSubsystem.setIntakeLauncherRoller(SmartDashboard.getNumber("Intaking intake roller value", INTAKE_EJECT_PERCENT));
+    fuelSubsystem.setIntakeLauncherRoller(-1*SmartDashboard.getNumber("Intaking intake roller value", INTAKE_EJECT_PERCENT));
      fuelSubsystem.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", INDEXER_LAUNCHING_PERCENT));
   }
 
