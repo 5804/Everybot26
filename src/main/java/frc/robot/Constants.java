@@ -8,7 +8,7 @@ import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 
-/**
+/*
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
  * purpose. All constants should be declared globally (i.e. public static). Do
@@ -43,13 +43,13 @@ public final class Constants {
     public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 80;
 
     // All values likely need to be tuned based on your robot
-    public static final double INDEXER_INTAKING_PERCENT = -.8; 
-    public static final double INDEXER_LAUNCHING_PERCENT = 0.6;
-    public static final double INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT = -0.5;
+    public static final double INDEXER_INTAKING_PERCENT = .5; 
+    public static final double INDEXER_LAUNCHING_PERCENT = -.5;
+    public static final double INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT = -.5;
 
-    public static final double INTAKE_INTAKING_PERCENT = 0.6;
-    public static final double LAUNCHING_LAUNCHER_PERCENT = .85;
-    public static final double INTAKE_EJECT_PERCENT = -0.8;
+    public static final double INTAKE_INTAKING_PERCENT = 0.1;
+    public static final double LAUNCHING_LAUNCHER_PERCENT = .1;
+    public static final double INTAKE_EJECT_PERCENT = -0.1;
 
     public static final double SPIN_UP_SECONDS = 0.75;
   }
@@ -61,8 +61,8 @@ public final class Constants {
     // Current limit for climb motor
     public static final int CLIMBER_MOTOR_CURRENT_LIMIT = 40;
     // Percentage to power the motor both up and down
-    public static final double CLIMBER_MOTOR_DOWN_PERCENT = -0.8;
-    public static final double CLIMBER_MOTOR_UP_PERCENT = 0.8;
+    public static final double CLIMBER_MOTOR_DOWN_PERCENT = 0.8;
+    public static final double CLIMBER_MOTOR_UP_PERCENT = -0.8;
   }
 
   public static final class OperatorConstants {
