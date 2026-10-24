@@ -26,10 +26,20 @@ public final class Constants {
     public static final int LEFT_FOLLOWER_ID = 11;
     public static final int RIGHT_LEADER_ID = 20;
     public static final int RIGHT_FOLLOWER_ID = 21;
-
+  }
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
+
+  public static final class AutoConstants {
+    public static final double AUTO_DRIVE_DISTANCE = 10.25; // feet
+    public static final double AUTO_DRIVE_SPEED = 3.0; // m/s?
+    public static final double AUTO_ROTATE_SPEED = 1.0; // rot/s?
+    public static final double AUTO_DRIVE_TIME = AUTO_DRIVE_DISTANCE/AUTO_DRIVE_SPEED; // s
+    public static final double AUTO_SHOOT_TIME = 10.0; // s
+
+    // DRIVE_SPEED * DRIVE_TIME = Drive distance
+    // Drive distance = 10.25 feet
   }
 
   public static final class FuelConstants {
